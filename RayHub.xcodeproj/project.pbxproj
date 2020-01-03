@@ -14,6 +14,7 @@
 		B5C6CCBB23BFC396000A6E53 /* RayHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCBA23BFC396000A6E53 /* RayHubTests.swift */; };
 		B5C6CCC623BFC396000A6E53 /* RayHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */; };
 		B5C6CCD523BFC3BC000A6E53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */; };
+		B5DFF05E23BFD45900396DE0 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DFF05D23BFD45900396DE0 /* StatusBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayHubUITests.swift; sourceTree = "<group>"; };
 		B5C6CCC723BFC396000A6E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5DFF05D23BFD45900396DE0 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		B5C6CCD323BFC3AB000A6E53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5DFF05D23BFD45900396DE0 /* StatusBar.swift */,
 				B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */,
 			);
 			path = Views;
@@ -268,6 +271,7 @@
 				B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */,
 				B5C6CCD523BFC3BC000A6E53 /* ContentView.swift in Sources */,
 				B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */,
+				B5DFF05E23BFD45900396DE0 /* StatusBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

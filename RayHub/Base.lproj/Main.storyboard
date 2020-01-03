@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -689,9 +690,58 @@
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="480" height="270"/>
-                        <toolbar key="toolbar" implicitIdentifier="439536A2-C87B-45E1-93D3-0B3FE85400B9" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="FYu-NP-a7p">
-                            <allowedToolbarItems/>
-                            <defaultToolbarItems/>
+                        <toolbar key="toolbar" implicitIdentifier="439536A2-C87B-45E1-93D3-0B3FE85400B9" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="FYu-NP-a7p">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Nvg-mV-ZeC"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="TM5-xI-ubb"/>
+                                <toolbarItem implicitItemIdentifier="F0412A02-AEEA-4155-829D-22DE428C6090" label="Presets" paletteLabel="Preset Selection" sizingBehavior="auto" id="y65-PR-wFS" userLabel="Preset Item">
+                                    <nil key="toolTip"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="W6n-Sm-53E">
+                                        <rect key="frame" x="0.0" y="14" width="177" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Wk6-ob-iM2">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Global"/>
+                                                <segment label="PAC" selected="YES" tag="1"/>
+                                                <segment label="Manual"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D6B2B0E1-BDD7-4BDA-89EF-094D76414AFF" label="Connection" paletteLabel="Connection" image="NSTouchBarPlayTemplate" sizingBehavior="auto" id="wuS-vR-CQm" userLabel="Run Button Item">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="HVT-ZM-so3" userLabel="Run Button">
+                                        <rect key="frame" x="17" y="14" width="35" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSTouchBarPlayTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dMj-0F-txO">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D9F30D43-1E13-4F95-B7C2-24AF810E890D" label="Status" paletteLabel="Status Bar" id="XRG-fe-3ZQ" userLabel="Status">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="98" height="22"/>
+                                    <size key="maxSize" width="384" height="22"/>
+                                    <textField key="view" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" id="lEe-4C-Xy2" customClass="StatusBar" customModule="RayHub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="14" width="192" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" title="Test" usesSingleLineMode="YES" bezelStyle="round" id="5Jo-nJ-Bfh">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="wuS-vR-CQm"/>
+                                <toolbarItem reference="Nvg-mV-ZeC"/>
+                                <toolbarItem reference="XRG-fe-3ZQ"/>
+                                <toolbarItem reference="Nvg-mV-ZeC"/>
+                                <toolbarItem reference="y65-PR-wFS"/>
+                            </defaultToolbarItems>
                         </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -714,4 +764,7 @@
             <point key="canvasLocation" x="75" y="698"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
+    </resources>
 </document>
