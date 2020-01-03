@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */; };
-		B5C6CCA723BFC395000A6E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA623BFC395000A6E53 /* ViewController.swift */; };
 		B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA823BFC395000A6E53 /* RayHub.xcdatamodeld */; };
 		B5C6CCAC23BFC396000A6E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */; };
 		B5C6CCAF23BFC396000A6E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C6CCAD23BFC396000A6E53 /* Main.storyboard */; };
 		B5C6CCBB23BFC396000A6E53 /* RayHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCBA23BFC396000A6E53 /* RayHubTests.swift */; };
 		B5C6CCC623BFC396000A6E53 /* RayHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */; };
+		B5C6CCD523BFC3BC000A6E53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		B5C6CCA123BFC395000A6E53 /* RayHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5C6CCA623BFC395000A6E53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5C6CCA923BFC395000A6E53 /* RayHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RayHub.xcdatamodel; sourceTree = "<group>"; };
 		B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5C6CCAE23BFC396000A6E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		B5C6CCC123BFC396000A6E53 /* RayHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayHubUITests.swift; sourceTree = "<group>"; };
 		B5C6CCC723BFC396000A6E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */,
-				B5C6CCA623BFC395000A6E53 /* ViewController.swift */,
+				B5C6CCD323BFC3AB000A6E53 /* Views */,
 				B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */,
 				B5C6CCAD23BFC396000A6E53 /* Main.storyboard */,
 				B5C6CCB023BFC396000A6E53 /* Info.plist */,
@@ -125,6 +125,14 @@
 				B5C6CCC723BFC396000A6E53 /* Info.plist */,
 			);
 			path = RayHubUITests;
+			sourceTree = "<group>";
+		};
+		B5C6CCD323BFC3AB000A6E53 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5C6CCD423BFC3BC000A6E53 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C6CCA723BFC395000A6E53 /* ViewController.swift in Sources */,
 				B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */,
+				B5C6CCD523BFC3BC000A6E53 /* ContentView.swift in Sources */,
 				B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
