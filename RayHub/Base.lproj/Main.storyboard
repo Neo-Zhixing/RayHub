@@ -709,12 +709,12 @@
                                         </segmentedCell>
                                     </segmentedControl>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D6B2B0E1-BDD7-4BDA-89EF-094D76414AFF" label="Connection" paletteLabel="Connection" image="NSTouchBarPlayTemplate" sizingBehavior="auto" id="wuS-vR-CQm" userLabel="Run Button Item">
+                                <toolbarItem implicitItemIdentifier="D6B2B0E1-BDD7-4BDA-89EF-094D76414AFF" label="Connection" paletteLabel="Connection" image="PlayTemplate" sizingBehavior="auto" id="wuS-vR-CQm" userLabel="Run Button Item">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="HVT-ZM-so3" userLabel="Run Button">
                                         <rect key="frame" x="17" y="14" width="35" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSTouchBarPlayTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dMj-0F-txO">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="PlayTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dMj-0F-txO">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -765,6 +765,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
+        <image name="PlayTemplate" width="15" height="15"/>
     </resources>
 </document>
