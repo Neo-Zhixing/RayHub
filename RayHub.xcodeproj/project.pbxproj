@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B52D1F9723C0F56F005DDE09 /* SourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9623C0F56F005DDE09 /* SourceListController.swift */; };
 		B52D1F9923C10B0B005DDE09 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9823C10B0B005DDE09 /* ContentViewController.swift */; };
+		B52D1F9B23C1368B005DDE09 /* HostnameComboBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9A23C1368B005DDE09 /* HostnameComboBoxController.swift */; };
+		B52D1F9D23C1E3AE005DDE09 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9C23C1E3AE005DDE09 /* UserDefaults.swift */; };
 		B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */; };
 		B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA823BFC395000A6E53 /* RayHub.xcdatamodeld */; };
 		B5C6CCAC23BFC396000A6E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		B52D1F9623C0F56F005DDE09 /* SourceListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceListController.swift; sourceTree = "<group>"; };
 		B52D1F9823C10B0B005DDE09 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		B52D1F9A23C1368B005DDE09 /* HostnameComboBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostnameComboBoxController.swift; sourceTree = "<group>"; };
+		B52D1F9C23C1E3AE005DDE09 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B5A6531E23C0E95900627B5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5C6CCA123BFC395000A6E53 /* RayHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			children = (
 				B52D1F9623C0F56F005DDE09 /* SourceListController.swift */,
 				B52D1F9823C10B0B005DDE09 /* ContentViewController.swift */,
+				B52D1F9A23C1368B005DDE09 /* HostnameComboBoxController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */,
+				B52D1F9C23C1E3AE005DDE09 /* UserDefaults.swift */,
 				B5A6532123C0EF9D00627B5B /* Models */,
 				B5A6532023C0EF9600627B5B /* Controllers */,
 				B5C6CCD323BFC3AB000A6E53 /* Views */,
@@ -289,8 +295,10 @@
 			files = (
 				B52D1F9923C10B0B005DDE09 /* ContentViewController.swift in Sources */,
 				B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */,
+				B52D1F9B23C1368B005DDE09 /* HostnameComboBoxController.swift in Sources */,
 				B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */,
 				B52D1F9723C0F56F005DDE09 /* SourceListController.swift in Sources */,
+				B52D1F9D23C1E3AE005DDE09 /* UserDefaults.swift in Sources */,
 				B5DFF05E23BFD45900396DE0 /* StatusBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

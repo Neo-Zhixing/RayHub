@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        registerUserDefaults(UserDefaults.standard)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -120,3 +120,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
+extension NSApplication {
+    var persistentContainer: NSPersistentContainer {
+        get {
+            let delegate = self.delegate! as! AppDelegate
+            return delegate.persistentContainer
+        }
+    }
+}

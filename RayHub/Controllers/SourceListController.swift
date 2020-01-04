@@ -20,7 +20,7 @@ struct SourceListItem {
 }
 
 
-class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
+class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSFetchedResultsControllerDelegate {
     
     private var contentViewController: ContentViewController {
         get {
@@ -42,6 +42,23 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             segue: "ServerSegue"
         )
     ]
+    
+    
+    lazy var vmessServersController: NSFetchedResultsController<VmessServer> = {
+        let fetchRequest: NSFetchRequest<VmessServer> = VmessServer.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "address", ascending: false)
+        ]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: NSApplication.shared.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "VmessServers")
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        try! self.vmessServersController.performFetch()
+        
+    }
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
             return SourceListController.items.count
