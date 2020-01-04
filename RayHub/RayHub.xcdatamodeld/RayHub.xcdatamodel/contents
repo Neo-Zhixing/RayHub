@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="VmessServer" representedClassName="VmessServer" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VmessUser" inverseName="servers" inverseEntity="VmessUser"/>
+    </entity>
+    <entity name="VmessUser" representedClassName="VmessUser" syncable="YES" codeGenerationType="class">
+        <attribute name="alterId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="security" optional="YES" attributeType="String"/>
+        <relationship name="servers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VmessServer" inverseName="users" inverseEntity="VmessServer"/>
+    </entity>
+    <elements>
+        <element name="VmessServer" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="VmessUser" positionX="-54" positionY="18" width="128" height="118"/>
+    </elements>
 </model>

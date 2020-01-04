@@ -29,12 +29,9 @@ class StatusBar: NSTextField {
         // Draw progress
         var progressRect = CGRect()
         let height: CGFloat = 4
-        progressRect.origin.y = self.bounds.size.height - height - 2
+        progressRect.origin.y = self.bounds.size.height - height
         progressRect.size.height = height
         progressRect.size.width = self.bounds.size.width
-        print(self.bounds,self.frame)
-        print(progressRect.origin, progressRect.size)
-
         NSColor.controlAccentColor.set()
         progressRect.fill(using: NSCompositingOperation.sourceIn)
     }
