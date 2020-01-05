@@ -1186,6 +1186,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="showAddMenuWithSender:" target="l2q-V7-mtn" id="Sfv-6U-zJ4"/>
+                                </connections>
                             </button>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-at-xrE">
                                 <rect key="frame" x="28" y="3" width="117" height="22"/>
@@ -1205,10 +1208,34 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addMenu" destination="Rdh-yL-UGI" id="xFg-Zb-MpL"/>
                         <outlet property="outlineView" destination="JWp-hE-OVB" id="8um-t7-lJY"/>
                     </connections>
                 </viewController>
                 <customObject id="Ymy-56-s0L" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu title="Add Menu" id="Rdh-yL-UGI" userLabel="Add Menu">
+                    <items>
+                        <menuItem title="Servers" id="Deq-XV-WeJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="Servers" id="sfM-l2-lA0">
+                                <items>
+                                    <menuItem title="Vmess" identifier="vmess" id="qd7-wK-u2g">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="addServerWithSender:" target="l2q-V7-mtn" id="DWt-LT-IjV"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Shadowsocks" tag="1" identifier="shadowsocks" id="T9h-Bc-j4a">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="addServerWithSender:" target="l2q-V7-mtn" id="QoF-8D-Z6T"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="10" y="1257"/>
         </scene>

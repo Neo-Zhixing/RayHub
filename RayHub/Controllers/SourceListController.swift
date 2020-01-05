@@ -8,32 +8,10 @@
 
 import AppKit
 
-struct SourceListItem {
-    let title: String
-    let image: NSImage?
-    let segue: NSStoryboardSegue.Identifier?
-    let isHeader: Bool
-    let children: [SourceListItem]
-    init(title: String, imageNamed: String, segue: String) {
-        self.title = title
-        self.segue = segue
-        self.image = NSImage(named: imageNamed)
-        self.isHeader = false
-        self.children = []
-    }
-    init(header: String, _ children: [SourceListItem]) {
-        self.title = header
-        self.isHeader = true
-        self.children = children
-        self.image = nil
-        self.segue = nil
-    }
-}
-
-
-class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSFetchedResultsControllerDelegate {
+class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
+    @IBOutlet var addMenu: NSMenu!
     
     private var contentViewController: ContentViewController {
         get {
@@ -43,18 +21,14 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     var selectedItem: SourceListItem!
     
-    var items: [SourceListItem] = [
+    lazy var items: [SourceListItem] = [
         SourceListItem(
             title: "Status",
             imageNamed: "GlobeTemplate",
             segue: "ConnectionSegue"
         ),
         SourceListItem(header: "Servers", [
-            SourceListItem(
-                title: "Vmess",
-                imageNamed: "ServerTemplate",
-                segue: "VmessServerSegue"
-            ),
+            self.vmessServersItem,
             SourceListItem(
                 title: "Shadowsocks",
                 imageNamed: "ShadowsocksTemplate",
@@ -64,19 +38,30 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     ]
     
     
-    lazy var vmessServersController: NSFetchedResultsController<VmessServer> = {
+    lazy var vmessServersItem: ManagedSourceListItem<VmessServer> = {
         let fetchRequest: NSFetchRequest<VmessServer> = VmessServer.fetchRequest()
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "address", ascending: false)
         ]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: NSApplication.shared.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "VmessServers")
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
+        
+        let item = ManagedSourceListItem<VmessServer>(
+        title: "Vmess", imageNamed: "ServerTemplate", controller: fetchedResultsController) {
+            server in
+            SourceListItem(title: server.name ?? "Unnamed Server", imageNamed: nil, segue: "VmessServerSegue", header: false)
+        }
+        fetchedResultsController.delegate = item
+        return item
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        try! self.vmessServersController.performFetch()
+        do {
+            try self.vmessServersItem.prepare()
+        } catch let err {
+            NSAlert(error: err).runModal()
+        }
+        
         
         for item in self.items {
             if !item.isHeader {
@@ -96,6 +81,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         let aItem = item as! SourceListItem
+        print(aItem.children)
         return !aItem.children.isEmpty
     }
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
@@ -141,5 +127,15 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         return true
+    }
+    
+    
+    
+    @IBAction func showAddMenu(sender: NSButton) {
+        self.addMenu.popUp(positioning: nil, at: NSPoint(), in: sender)
+    }
+    @IBAction func addServer(sender: NSMenuItem) {
+        let context = NSApplication.shared.persistentContainer.viewContext
+        let a = VmessServer(context: context)
     }
 }
