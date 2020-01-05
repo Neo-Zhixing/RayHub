@@ -11,16 +11,29 @@ import AppKit
 struct SourceListItem {
     let title: String
     let image: NSImage?
-    let segue: NSStoryboardSegue.Identifier
+    let segue: NSStoryboardSegue.Identifier?
+    let isHeader: Bool
+    let children: [SourceListItem]
     init(title: String, imageNamed: String, segue: String) {
         self.title = title
         self.segue = segue
         self.image = NSImage(named: imageNamed)
+        self.isHeader = false
+        self.children = []
+    }
+    init(header: String, _ children: [SourceListItem]) {
+        self.title = header
+        self.isHeader = true
+        self.children = children
+        self.image = nil
+        self.segue = nil
     }
 }
 
 
 class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSFetchedResultsControllerDelegate {
+    
+    @IBOutlet weak var outlineView: NSOutlineView!
     
     private var contentViewController: ContentViewController {
         get {
@@ -28,19 +41,21 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         }
     }
     
-    var selectedItem: SourceListItem = SourceListController.items[0]
+    var selectedItem: SourceListItem!
     
-    static let items = [
+    var items: [SourceListItem] = [
         SourceListItem(
-            title: "Connection",
+            title: "Status",
             imageNamed: "GlobeTemplate",
             segue: "ConnectionSegue"
         ),
-        SourceListItem(
-            title: "Servers",
-            imageNamed: "ServerTemplate",
-            segue: "ServerSegue"
-        )
+        SourceListItem(header: "Servers", [
+            SourceListItem(
+                title: "Servers",
+                imageNamed: "ServerTemplate",
+                segue: "ServerSegue"
+            )
+        ]),
     ]
     
     
@@ -58,28 +73,59 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         super.viewDidLoad()
         try! self.vmessServersController.performFetch()
         
+        for item in self.items {
+            if !item.isHeader {
+                self.selectedItem = item
+                break
+            }
+        }
+        
+        self.outlineView.expandItem(nil, expandChildren: true)
     }
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item == nil {
-            return SourceListController.items.count
+        if let aItem = item as? SourceListItem {
+            return aItem.children.count
+        } else {
+            return self.items.count
         }
-        return 0
     }
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        return false
+        let aItem = item as! SourceListItem
+        return !aItem.children.isEmpty
     }
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return SourceListController.items[index]
+        if let aItem = item as? SourceListItem {
+            return aItem.children[index]
+        } else {
+            return self.items[index]
+        }
+    }
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        if let aItem = item as? SourceListItem {
+            return aItem.segue != nil
+        }
+        return false
     }
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         let aItem = item as! SourceListItem
-        let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
-        let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
-        cell.textField!.stringValue = aItem.title
-        cell.imageView!.image = aItem.image
+        let cell: NSTableCellView
+        if aItem.isHeader {
+            let cellIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
+            cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
+        } else {
+            let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
+            cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
+        }
+        cell.textField?.stringValue = aItem.title
+        cell.imageView?.image = aItem.image
         cell.objectValue = aItem
         return cell
     }
+    func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
+        let aItem = item as! SourceListItem
+        return aItem.isHeader
+    }
+    
     func outlineViewSelectionDidChange(_ notification: Notification) {
         let outlineView = notification.object as! NSOutlineView
         let rowView = outlineView.rowView(atRow: outlineView.selectedRow, makeIfNecessary: false)
@@ -88,5 +134,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         
         self.contentViewController.select(item: item)
     }
-    
+    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+        return true
+    }
 }

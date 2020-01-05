@@ -1173,6 +1173,9 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <connections>
+                        <outlet property="outlineView" destination="b1L-ow-Qgg" id="iCw-hQ-OVR"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="40" y="1257"/>

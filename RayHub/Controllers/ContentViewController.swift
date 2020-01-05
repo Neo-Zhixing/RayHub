@@ -30,11 +30,13 @@ class ContentViewController: NSViewController {
         self.view.addSubview(viewController.view)
     }
     func select(item: SourceListItem) {
-        self.performSegue(withIdentifier: item.segue, sender: item)
+        if let segue = item.segue {
+            self.performSegue(withIdentifier: segue, sender: item)
+        }
     }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        let item = sender! as! SourceListItem
-        let aSegue = segue as! ContentViewReplaceSegue
+        // let item = sender! as! SourceListItem
+        // let aSegue = segue as! ContentViewReplaceSegue
     }
 }
 
