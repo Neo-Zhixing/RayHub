@@ -51,9 +51,14 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         ),
         SourceListItem(header: "Servers", [
             SourceListItem(
-                title: "Servers",
+                title: "Vmess",
                 imageNamed: "ServerTemplate",
-                segue: "ServerSegue"
+                segue: "VmessServerSegue"
+            ),
+            SourceListItem(
+                title: "Shadowsocks",
+                imageNamed: "ShadowsocksTemplate",
+                segue: "VmessServerSegue"
             )
         ]),
     ]
