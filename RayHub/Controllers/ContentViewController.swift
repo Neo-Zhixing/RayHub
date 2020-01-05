@@ -35,8 +35,8 @@ class ContentViewController: NSViewController {
         }
     }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        // let item = sender! as! SourceListItem
-        // let aSegue = segue as! ContentViewReplaceSegue
+        let vc = segue.destinationController as! NSViewController
+        vc.representedObject = sender
     }
 }
 

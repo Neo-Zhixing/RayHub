@@ -12,6 +12,8 @@
 		B52D1F9B23C1368B005DDE09 /* HostnameComboBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9A23C1368B005DDE09 /* HostnameComboBoxController.swift */; };
 		B52D1F9D23C1E3AE005DDE09 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9C23C1E3AE005DDE09 /* UserDefaults.swift */; };
 		B52D1F9F23C297AC005DDE09 /* SourceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1F9E23C297AC005DDE09 /* SourceListItem.swift */; };
+		B52D1FA223C2A329005DDE09 /* Server+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */; };
+		B52D1FA623C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */; };
 		B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */; };
 		B5C6CCAA23BFC395000A6E53 /* RayHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCA823BFC395000A6E53 /* RayHub.xcdatamodeld */; };
 		B5C6CCAC23BFC396000A6E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		B52D1F9A23C1368B005DDE09 /* HostnameComboBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostnameComboBoxController.swift; sourceTree = "<group>"; };
 		B52D1F9C23C1E3AE005DDE09 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B52D1F9E23C297AC005DDE09 /* SourceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceListItem.swift; sourceTree = "<group>"; };
+		B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VmessServer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B5A6531E23C0E95900627B5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5C6CCA123BFC395000A6E53 /* RayHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C6CCA423BFC395000A6E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		B5A6532123C0EF9D00627B5B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */,
+				B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52D1FA223C2A329005DDE09 /* Server+CoreDataClass.swift in Sources */,
+				B52D1FA623C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift in Sources */,
 				B52D1F9923C10B0B005DDE09 /* ContentViewController.swift in Sources */,
 				B5C6CCA523BFC395000A6E53 /* AppDelegate.swift in Sources */,
 				B52D1F9B23C1368B005DDE09 /* HostnameComboBoxController.swift in Sources */,

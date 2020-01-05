@@ -35,9 +35,13 @@ class SourceListItem: NSObject {
     }
 }
 
+protocol ManagedSourceListItemDelegate: NSObjectProtocol {
+    func listItem(_ parentItem: SourceListItem, didAddChild item: SourceListItem, atIndexPath indexPath: IndexPath)
+}
 class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDelegate where Item: NSFetchRequestResult {
     var controller: NSFetchedResultsController<Item>
     var childrenItemProvier: (Item) -> SourceListItem
+    weak var delegate: ManagedSourceListItemDelegate?
     
     init(
         title: String,
@@ -64,6 +68,12 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
     
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        print(anObject)
+        let item = anObject as! Item
+        switch type {
+        case .insert:
+            self.delegate?.listItem(self, didAddChild: self.childrenItemProvier(item), atIndexPath: newIndexPath!)
+        default:
+            ()
+        }
     }
 }

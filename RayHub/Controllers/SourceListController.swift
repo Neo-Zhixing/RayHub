@@ -8,7 +8,7 @@
 
 import AppKit
 
-class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
+class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, ManagedSourceListItemDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet var addMenu: NSMenu!
@@ -51,6 +51,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             SourceListItem(title: server.name ?? "Unnamed Server", imageNamed: nil, segue: "VmessServerSegue", header: false)
         }
         fetchedResultsController.delegate = item
+        item.delegate = self
         return item
     }()
     
@@ -81,7 +82,6 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         let aItem = item as! SourceListItem
-        print(aItem.children)
         return !aItem.children.isEmpty
     }
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
@@ -136,6 +136,12 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     @IBAction func addServer(sender: NSMenuItem) {
         let context = NSApplication.shared.persistentContainer.viewContext
-        let a = VmessServer(context: context)
+        _ = VmessServer(context: context)
+    }
+    
+    func listItem(_ parentItem: SourceListItem, didAddChild item: SourceListItem, atIndexPath indexPath: IndexPath) {
+        print(parentItem)
+        let indexSet = IndexSet(indexPath)
+        self.outlineView.insertItems(at: indexSet, inParent: parentItem, withAnimation: NSTableView.AnimationOptions.effectFade)
     }
 }
