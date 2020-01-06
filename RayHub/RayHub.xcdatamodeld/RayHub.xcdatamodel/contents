@@ -6,19 +6,13 @@
     </entity>
     <entity name="VmessServer" representedClassName="VmessServer" parentEntity="Server" syncable="YES" codeGenerationType="category">
         <attribute name="address" optional="YES" attributeType="String"/>
-        <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VmessUser" inverseName="servers" inverseEntity="VmessUser"/>
-    </entity>
-    <entity name="VmessUser" representedClassName="VmessUser" syncable="YES" codeGenerationType="class">
         <attribute name="alterId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="security" optional="YES" attributeType="String"/>
-        <relationship name="servers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VmessServer" inverseName="users" inverseEntity="VmessServer"/>
+        <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="security" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
         <element name="Server" positionX="-63" positionY="45" width="128" height="73"/>
-        <element name="VmessServer" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="VmessUser" positionX="-54" positionY="18" width="128" height="118"/>
+        <element name="VmessServer" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

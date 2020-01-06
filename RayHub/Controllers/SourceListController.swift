@@ -71,6 +71,11 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         } catch let err {
             NSAlert(error: err).runModal()
         }
+        for i in self.vmessServersItem.children {
+            if let   a = i.associatedObject as? VmessServer {
+                print(a.security)
+            }
+        }
         
         
         for item in self.items {
@@ -190,7 +195,6 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     func listItem(_ parentItem: SourceListItem, didAddChild item: SourceListItem, atIndexPath indexPath: IndexPath) {
         let indexSet = IndexSet(integer: indexPath.item)
-        print(indexSet, indexPath.item, self.items)
         self.outlineView.insertItems(at: indexSet, inParent: parentItem, withAnimation: .slideLeft)
     }
     func listItem(_ parentItem: SourceListItem, didRemoveChild item: SourceListItem, atIndexPath indexPath: IndexPath) {
