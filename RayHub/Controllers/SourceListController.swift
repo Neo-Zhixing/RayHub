@@ -107,7 +107,8 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
             cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
         }
-        cell.textField?.stringValue = aItem.title
+        cell.textField?.bind(NSBindingName.value, to: aItem, withKeyPath: "title", options: nil)
+        //cell.textField?.stringValue = aItem.title
         cell.imageView?.image = aItem.image
         cell.objectValue = aItem
         return cell

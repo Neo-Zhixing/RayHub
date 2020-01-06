@@ -9,12 +9,13 @@
 import AppKit
 
 class SourceListItem: NSObject {
-    let title: String
+    @objc var title: String
     let image: NSImage?
     let segue: NSStoryboardSegue.Identifier?
     let isHeader: Bool
     
     var children: [SourceListItem]
+    @objc var associatedObject: AnyObject? = nil
     init(title: String, imageNamed: String?, segue: String? = nil, header: Bool = false) {
         self.title = title
         self.segue = segue
@@ -63,15 +64,23 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
     
     func prepare() throws {
         try self.controller.performFetch()
-        self.children = self.controller.fetchedObjects!.map(self.childrenItemProvier)
+        self.children = self.controller.fetchedObjects!.map {
+            obj in
+            let item = self.childrenItemProvier(obj)
+            item.associatedObject = obj
+            item.bind(NSBindingName(rawValue: "title"), to: obj, withKeyPath: "name", options: nil)
+            return item
+        }
     }
     
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        let item = anObject as! Item
+        let obj = anObject as! Item
         switch type {
         case .insert:
-            self.delegate?.listItem(self, didAddChild: self.childrenItemProvier(item), atIndexPath: newIndexPath!)
+            let item = self.childrenItemProvier(obj)
+            item.bind(NSBindingName(rawValue: "title"), to: obj, withKeyPath: "name", options: nil)
+            self.delegate?.listItem(self, didAddChild: item, atIndexPath: newIndexPath!)
         default:
             ()
         }

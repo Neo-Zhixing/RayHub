@@ -27,6 +27,8 @@ class ContentViewController: NSViewController {
         self.currentViewController?.removeFromParent()
         self.currentViewController = viewController
         self.addChild(viewController)
+        viewController.view.frame = self.view.bounds
+        viewController.view.autoresizingMask = [.height, .width, .maxXMargin, .maxYMargin, .minYMargin, .minXMargin]
         self.view.addSubview(viewController.view)
     }
     func select(item: SourceListItem) {
@@ -35,8 +37,9 @@ class ContentViewController: NSViewController {
         }
     }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        let item = sender as! SourceListItem
         let vc = segue.destinationController as! NSViewController
-        vc.representedObject = sender
+        vc.representedObject = item.associatedObject
     }
 }
 

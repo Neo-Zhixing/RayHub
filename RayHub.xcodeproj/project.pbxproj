@@ -89,6 +89,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B52D1FA823C2A563005DDE09 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B5A6532023C0EF9600627B5B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +144,7 @@
 				B5A6532123C0EF9D00627B5B /* Models */,
 				B5A6532023C0EF9600627B5B /* Controllers */,
 				B5C6CCD323BFC3AB000A6E53 /* Views */,
+				B52D1FA823C2A563005DDE09 /* Utils */,
 				B5C6CCAB23BFC396000A6E53 /* Assets.xcassets */,
 				B5C6CCAD23BFC396000A6E53 /* Main.storyboard */,
 				B5C6CCB123BFC396000A6E53 /* RayHub.entitlements */,
