@@ -9,6 +9,7 @@
 import AppKit
 
 class SourceListItem: NSObject {
+    weak var parent: SourceListItem?
     var title: String
     let image: NSImage?
     let segue: NSStoryboardSegue.Identifier?
@@ -33,6 +34,10 @@ class SourceListItem: NSObject {
         self.children = children
         self.image = nil
         self.segue = nil
+        super.init()
+        for c in children {
+            c.parent = self
+        }
     }
     
     override var description: String {
@@ -81,6 +86,7 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
             obj in
             let item = self.childrenItemProvier(obj)
             item.associatedObject = obj
+            item.parent = self
             return item
         }
     }
@@ -93,6 +99,7 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
             let item = self.childrenItemProvier(obj)
             self.children.insert(item, at: newIndexPath!.item)
             item.associatedObject = obj
+            item.parent = self
             self.delegate?.listItem(self, didAddChild: item, atIndexPath: newIndexPath!)
         case .delete:
             let item = self.children.remove(at: indexPath!.item)
@@ -109,5 +116,13 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
     }
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.delegate?.listItemEndUpdate(item: self)
+    }
+}
+
+extension SourceListItem: NSPasteboardItemDataProvider {
+    func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
+        if let parent = self.parent {
+            item.setString(String(parent.hashValue), forType: type)
+        }
     }
 }

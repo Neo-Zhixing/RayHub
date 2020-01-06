@@ -8,6 +8,9 @@
 
 import AppKit
 
+extension NSPasteboard.PasteboardType {
+    static let sourceListItem: NSPasteboard.PasteboardType = NSPasteboard.PasteboardType(rawValue: "xin.neoto.SourceListItem")
+}
 class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, ManagedSourceListItemDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
@@ -62,6 +65,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.outlineView.registerForDraggedTypes([.sourceListItem])
         do {
             try self.vmessServersItem.prepare()
         } catch let err {
@@ -135,6 +139,33 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         return true
     }
+    
+    // MARK: - Drag and drop to reorder
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+        let aItem = item as! SourceListItem
+        if aItem.associatedObject == nil {
+            return nil
+        }
+        let pbItem:NSPasteboardItem = NSPasteboardItem()
+        pbItem.setDataProvider(aItem, forTypes: [.sourceListItem])
+        return pbItem
+    }
+    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+        if index == NSOutlineViewDropOnItemIndex {
+            return []
+        }
+        guard let aItem = item as? SourceListItem else {
+            return []
+        }
+        if let hash = info.draggingPasteboard.string(forType: .sourceListItem) {
+            return Int(hash) == aItem.hash ? .move : []
+        }
+        return []
+    }
+    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+        return true
+    }
+    
     
     
     
