@@ -99,14 +99,15 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         let aItem = item as! SourceListItem
-        let cell: NSTableCellView
+        let cellIdentifier: NSUserInterfaceItemIdentifier
         if aItem.isHeader {
-            let cellIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
-            cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
+            cellIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
+        } else if aItem.image == nil {
+            cellIdentifier = NSUserInterfaceItemIdentifier("TextCell")
         } else {
-            let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
-            cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
+            cellIdentifier = NSUserInterfaceItemIdentifier("TextImageCell")
         }
+        let cell: NSTableCellView = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
         cell.textField?.bind(NSBindingName.value, to: aItem, withKeyPath: "title", options: nil)
         //cell.textField?.stringValue = aItem.title
         cell.imageView?.image = aItem.image

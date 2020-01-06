@@ -1132,7 +1132,7 @@
                                                                 <outlet property="textField" destination="UfY-g2-WXD" id="nse-Ta-lZG"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="DataCell" id="sqR-Yc-Idi">
+                                                        <tableCellView identifier="TextImageCell" id="sqR-Yc-Idi">
                                                             <rect key="frame" x="1" y="17" width="145" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1154,6 +1154,24 @@
                                                             <connections>
                                                                 <outlet property="imageView" destination="uOi-fC-D5f" id="oJc-R2-LwO"/>
                                                                 <outlet property="textField" destination="Pwx-4t-kJg" id="tG1-9l-8mm"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                        <tableCellView identifier="TextCell" id="7Wk-8A-5dU">
+                                                            <rect key="frame" x="1" y="34" width="145" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zX1-9E-D9l">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Text" id="kUK-IE-g6Y">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="zX1-9E-D9l" id="eEc-Sx-Xf6"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
