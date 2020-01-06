@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Server" representedClassName="Server" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="details" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String" defaultValueString="Untitled"/>
     </entity>
     <entity name="VmessServer" representedClassName="VmessServer" parentEntity="Server" syncable="YES" codeGenerationType="category">
         <attribute name="address" optional="YES" attributeType="String"/>
@@ -17,8 +17,8 @@
         <relationship name="servers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VmessServer" inverseName="users" inverseEntity="VmessServer"/>
     </entity>
     <elements>
+        <element name="Server" positionX="-63" positionY="45" width="128" height="73"/>
         <element name="VmessServer" positionX="-63" positionY="-18" width="128" height="88"/>
         <element name="VmessUser" positionX="-54" positionY="18" width="128" height="118"/>
-        <element name="Server" positionX="-63" positionY="45" width="128" height="73"/>
     </elements>
 </model>

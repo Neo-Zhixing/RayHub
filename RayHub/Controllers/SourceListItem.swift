@@ -34,10 +34,22 @@ class SourceListItem: NSObject {
         self.image = nil
         self.segue = nil
     }
+    
+    override var description: String {
+        get {
+            if self.children.isEmpty {
+                return self.title
+            }
+            return "\(self.title) [\(self.children.map({item in item.description}).joined(separator: ", "))]"
+        }
+    }
 }
 
 protocol ManagedSourceListItemDelegate: NSObjectProtocol {
     func listItem(_ parentItem: SourceListItem, didAddChild item: SourceListItem, atIndexPath indexPath: IndexPath)
+    func listItem(_ parentItem: SourceListItem, didRemoveChild item: SourceListItem, atIndexPath indexPath: IndexPath)
+    func listItemStartUpdate(item: SourceListItem)
+    func listItemEndUpdate(item: SourceListItem)
 }
 class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDelegate where Item: NSFetchRequestResult {
     var controller: NSFetchedResultsController<Item>
@@ -79,10 +91,21 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
         switch type {
         case .insert:
             let item = self.childrenItemProvier(obj)
+            self.children.insert(item, at: newIndexPath!.item)
+            item.associatedObject = obj
             item.bind(NSBindingName(rawValue: "title"), to: obj, withKeyPath: "name", options: nil)
             self.delegate?.listItem(self, didAddChild: item, atIndexPath: newIndexPath!)
+        case .delete:
+            let item = self.children.remove(at: indexPath!.item)
+            self.delegate?.listItem(self, didRemoveChild: item, atIndexPath: indexPath!)
         default:
             ()
         }
+    }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.delegate?.listItemEndUpdate(item: self)
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.delegate?.listItemEndUpdate(item: self)
     }
 }
