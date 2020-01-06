@@ -95,6 +95,7 @@
                                         <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
                                                 <action selector="saveAction:" target="Voe-Tx-rLC" id="8sH-aG-emN"/>
+                                                <binding destination="Voe-Tx-rLC" name="enabled" keyPath="persistentContainer.viewContext.hasChanges" id="7r1-lX-IqI"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
@@ -1315,6 +1316,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.name" id="NGc-Pn-Mvm"/>
+                                                <outlet property="nextKeyView" destination="DBR-HV-HeX" id="5aj-Hm-w1h"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BU4-6s-OZw">
@@ -1345,6 +1347,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.details" id="log-cO-qk0"/>
+                                                <outlet property="nextKeyView" destination="bEt-XG-XLn" id="LbC-DK-XTj"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -1386,6 +1389,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.address" id="aqI-ua-hZr"/>
+                                                <outlet property="nextKeyView" destination="NPR-6U-24B" id="ZqE-qa-B2I"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JeB-sA-lpb">
@@ -1402,12 +1406,17 @@
                                                 <constraint firstAttribute="width" constant="60" id="moa-H8-5tK"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="CKR-a2-EkX">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="wqT-Ak-MDN">
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="65535"/>
+                                                </numberFormatter>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.port" id="58u-vv-tlS"/>
+                                                <outlet property="nextKeyView" destination="JNt-u8-77Y" id="c6l-fn-wLC"/>
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNt-u8-77Y">
@@ -1420,6 +1429,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.uuid" id="pOQ-XM-Ide"/>
+                                                <outlet property="nextKeyView" destination="Tt2-fE-sfp" id="QhU-64-Ki3"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cjk-h4-p6X">
@@ -1443,6 +1453,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.alterId" id="ewg-27-qiq"/>
+                                                <outlet property="nextKeyView" destination="9gE-0z-b7J" id="P2Z-Nn-vz4"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EkX-oy-hvC">
@@ -1485,6 +1496,7 @@
                                             </popUpButtonCell>
                                             <connections>
                                                 <binding destination="PKt-Uj-GXp" name="selectedTag" keyPath="representedObject.security" id="kex-Zw-kFx"/>
+                                                <outlet property="nextKeyView" destination="Pyq-rv-TWx" id="IHa-47-w74"/>
                                             </connections>
                                         </popUpButton>
                                     </subviews>
@@ -1533,10 +1545,10 @@
             </objects>
             <point key="canvasLocation" x="595" y="1765.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Shadowsocks View Controller-->
         <scene sceneID="U1I-uM-pIS">
             <objects>
-                <viewController id="nhY-v7-dbr" sceneMemberID="viewController">
+                <viewController title="Shadowsocks View Controller" id="nhY-v7-dbr" sceneMemberID="viewController">
                     <view key="view" id="4Qe-Gt-WEJ">
                         <rect key="frame" x="0.0" y="0.0" width="522" height="426"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1555,7 +1567,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.name" id="0Gf-gE-law"/>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.name" id="5LM-xA-7Od"/>
+                                                <outlet property="nextKeyView" destination="scp-Np-ZMJ" id="D6H-Yf-vik"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-VO-iZq">
@@ -1577,7 +1590,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.details" id="eVx-2c-t0X"/>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.details" id="wGF-7z-Qhw"/>
+                                                <outlet property="nextKeyView" destination="XCW-2Z-o6g" id="6NG-dU-URV"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FjT-pa-WHb">
@@ -1626,7 +1640,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.address" id="Sdf-WK-Dg6"/>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.address" id="aYN-1z-GY4"/>
+                                                <outlet property="nextKeyView" destination="kCL-Kb-MV2" id="EfG-Qh-bBz"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UhI-dF-9rS">
@@ -1643,24 +1658,29 @@
                                                 <constraint firstAttribute="width" constant="60" id="k8L-k9-wEB"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="hkE-XE-tM1">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="6lg-he-XD3">
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="65535"/>
+                                                </numberFormatter>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.port" id="2wQ-gM-Wws"/>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.port" id="ukf-sh-ToZ"/>
+                                                <outlet property="nextKeyView" destination="oyH-w3-tgi" id="svL-nz-PV1"/>
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyH-w3-tgi">
                                             <rect key="frame" x="82" y="82" width="380" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="PiQ-4X-QfD">
-                                                <customFormatter key="formatter" id="9Ma-RP-j25" customClass="UUIDFormatter" customModule="RayHub" customModuleProvider="target"/>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="value" keyPath="representedObject.uuid" id="NAJ-8C-TWn"/>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.email" id="N13-Cv-Rtn"/>
+                                                <outlet property="nextKeyView" destination="UT1-Bm-aaj" id="jbC-Qv-NCs"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R5b-fb-EuZ">
@@ -1673,28 +1693,38 @@
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dLZ-1X-S9i">
                                             <rect key="frame" x="305" y="17" width="160" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Automatic" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Gb0-Fu-EgC" id="S9T-ou-DVH">
+                                            <popUpButtonCell key="cell" type="push" title="aes-256-cfb" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Gb0-Fu-EgC" id="S9T-ou-DVH">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="gv3-7f-Su4">
                                                     <items>
-                                                        <menuItem title="Automatic" state="on" identifier="auto" id="Gb0-Fu-EgC">
+                                                        <menuItem title="aes-256-cfb" state="on" identifier="aes-256-cfb" id="Gb0-Fu-EgC">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>
-                                                        <menuItem title="aes-128-gcm" tag="2" identifier="aes-128-gcm" id="UWM-pW-6v5">
+                                                        <menuItem title="aes-128-cfb" tag="1" identifier="aes-128-cfb" id="UWM-pW-6v5">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>
-                                                        <menuItem title="chacha20-poly1305" tag="3" identifier="chacha20-poly1305" id="wMj-9m-sba">
+                                                        <menuItem title="chacha20" tag="2" identifier="chacha20" id="wMj-9m-sba">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>
-                                                        <menuItem title="None" tag="1" identifier="none" id="i9E-rR-0y2">
+                                                        <menuItem title="chacha20-ietf" tag="3" identifier="chacha20-ietf" id="i9E-rR-0y2">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="aes-256-gcm" tag="4" identifier="aes-256-gcm" id="UA0-N4-9Hi">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="aes-128-gcm" tag="5" identifier="aes-128-gcm" id="lzn-8d-xna">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="chacha20-poly1305" tag="6" identifier="chacha20-poly1305" id="icz-ye-qtC">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="PKt-Uj-GXp" name="selectedTag" keyPath="representedObject.security" id="8Ue-P8-J3F"/>
+                                                <binding destination="nhY-v7-dbr" name="selectedTag" keyPath="representedObject.security" id="WI3-Fb-Tmq"/>
+                                                <outlet property="nextKeyView" destination="ruo-bM-qXk" id="J20-aC-Fdv"/>
                                             </connections>
                                         </popUpButton>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-r5-smG">
@@ -1715,6 +1745,10 @@
                                                     <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                                 </allowedInputSourceLocales>
                                             </secureTextFieldCell>
+                                            <connections>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.password" id="1ua-ev-R6V"/>
+                                                <outlet property="nextKeyView" destination="v2b-gc-jVZ" id="bUd-NP-VG3"/>
+                                            </connections>
                                         </secureTextField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N66-fj-JEI">
                                             <rect key="frame" x="243" y="23" width="58" height="16"/>
@@ -1726,17 +1760,23 @@
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JcB-xV-BMs">
                                             <rect key="frame" x="80" y="17" width="160" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="aUB-cC-cW1" id="czP-3n-kSG">
+                                            <popUpButtonCell key="cell" type="push" title="TCP" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="aUB-cC-cW1" id="czP-3n-kSG">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="FsU-4E-uo3">
                                                     <items>
-                                                        <menuItem title="Item 1" state="on" id="aUB-cC-cW1"/>
-                                                        <menuItem title="Item 2" id="l1x-2i-Mbb"/>
-                                                        <menuItem title="Item 3" id="P3D-2D-J7S"/>
+                                                        <menuItem title="TCP" state="on" id="aUB-cC-cW1">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="UDP" tag="1" id="l1x-2i-Mbb"/>
+                                                        <menuItem title="TCP/UDP" tag="2" id="P3D-2D-J7S"/>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
+                                            <connections>
+                                                <binding destination="nhY-v7-dbr" name="selectedTag" keyPath="representedObject.network" id="tce-oh-IAe"/>
+                                                <outlet property="nextKeyView" destination="dLZ-1X-S9i" id="QrK-aI-HxK"/>
+                                            </connections>
                                         </popUpButton>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BN5-iH-Nen">
                                             <rect key="frame" x="17" y="23" width="59" height="16"/>
@@ -1752,6 +1792,10 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <binding destination="nhY-v7-dbr" name="value" keyPath="representedObject.ota" id="eTA-l8-Hsn"/>
+                                                <outlet property="nextKeyView" destination="JcB-xV-BMs" id="z8e-Py-kVI"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

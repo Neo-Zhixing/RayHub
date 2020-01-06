@@ -81,6 +81,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         self.outlineView.registerForDraggedTypes([.sourceListItem])
         do {
             try self.vmessServersItem.prepare()
+            try self.shadowsocksServersItem.prepare()
         } catch let err {
             NSAlert(error: err).runModal()
         }
