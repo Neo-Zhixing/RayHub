@@ -37,11 +37,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         ),
         SourceListItem(header: "Servers", [
             self.vmessServersItem,
-            SourceListItem(
-                title: "Shadowsocks",
-                imageNamed: "ShadowsocksTemplate",
-                segue: "VmessServerSegue"
-            )
+            self.shadowsocksServersItem
         ]),
     ]
     
@@ -63,6 +59,23 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         return item
     }()
     
+    lazy var shadowsocksServersItem: ManagedSourceListItem<ShadowsocksServer> = {
+        let fetchRequest: NSFetchRequest<ShadowsocksServer> = ShadowsocksServer.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "address", ascending: false)
+        ]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: NSApplication.shared.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "ShadowsocksServers")
+        
+        let item = ManagedSourceListItem<ShadowsocksServer>(
+        title: "Shadowsocks", imageNamed: "ShadowsocksTemplate", controller: fetchedResultsController) {
+            server in
+            SourceListItem(title: server.name ?? "Unnamed Server", imageNamed: nil, segue: "ShadowsocksServerSegue", header: false)
+        }
+        fetchedResultsController.delegate = item
+        item.delegate = self
+        return item
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.outlineView.registerForDraggedTypes([.sourceListItem])
@@ -71,12 +84,6 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         } catch let err {
             NSAlert(error: err).runModal()
         }
-        for i in self.vmessServersItem.children {
-            if let   a = i.associatedObject as? VmessServer {
-                print(a.security)
-            }
-        }
-        
         
         for item in self.items {
             if !item.isHeader {
@@ -134,6 +141,9 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         let outlineView = notification.object as! NSOutlineView
+        if outlineView.selectedRow < 0 {
+            return
+        }
         let rowView = outlineView.rowView(atRow: outlineView.selectedRow, makeIfNecessary: false)
         let cell = rowView?.view(atColumn: outlineView.selectedColumn) as! NSTableCellView
         let item = cell.objectValue as! SourceListItem
@@ -179,7 +189,14 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     @IBAction func addServer(sender: NSMenuItem) {
         let context = NSApplication.shared.persistentContainer.viewContext
-        _ = VmessServer(context: context)
+        guard let id = sender.identifier else {
+            return
+        }
+        if id.rawValue == "vmess" {
+            _ = VmessServer(context: context)
+        } else if id.rawValue == "shadowsocks" {
+            _ = ShadowsocksServer(context: context)
+        }
     }
     @IBAction func removeItem(sender: NSButton)  {
         let row = outlineView.selectedRow
@@ -199,7 +216,6 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     func listItem(_ parentItem: SourceListItem, didRemoveChild item: SourceListItem, atIndexPath indexPath: IndexPath) {
         let indexSet =  IndexSet(integer: indexPath.item)
-        print(indexPath.item)
         self.outlineView.removeItems(at: indexSet, inParent: parentItem, withAnimation: .slideRight)
     }
     func listItem(_ parentItem: SourceListItem, didUpdateChild item: SourceListItem, atIndexPath indexPath: IndexPath, to object: Any) {
