@@ -113,8 +113,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             cellIdentifier = NSUserInterfaceItemIdentifier("TextImageCell")
         }
         let cell: NSTableCellView = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
-        cell.textField?.bind(NSBindingName.value, to: aItem, withKeyPath: "title", options: nil)
-        //cell.textField?.stringValue = aItem.title
+        cell.textField?.stringValue = aItem.title
         cell.imageView?.image = aItem.image
         cell.objectValue = aItem
         return cell
@@ -167,6 +166,15 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         let indexSet =  IndexSet(integer: indexPath.item)
         print(indexPath.item)
         self.outlineView.removeItems(at: indexSet, inParent: parentItem, withAnimation: .slideRight)
+    }
+    func listItem(_ parentItem: SourceListItem, didUpdateChild item: SourceListItem, atIndexPath indexPath: IndexPath, to object: Any) {
+        if let server = object as? VmessServer {
+            item.title = server.name ?? "Untitled"
+            let row = self.outlineView.row(forItem: item)
+            let rowView = self.outlineView.rowView(atRow: row, makeIfNecessary: false)
+            let colView = rowView?.view(atColumn: 0) as? NSTableCellView
+            colView?.textField?.stringValue = item.title
+        }
     }
     func listItemStartUpdate(item: SourceListItem) {
         self.outlineView.beginUpdates()

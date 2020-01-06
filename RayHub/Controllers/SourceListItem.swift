@@ -9,7 +9,7 @@
 import AppKit
 
 class SourceListItem: NSObject {
-    @objc var title: String
+    var title: String
     let image: NSImage?
     let segue: NSStoryboardSegue.Identifier?
     let isHeader: Bool
@@ -48,6 +48,7 @@ class SourceListItem: NSObject {
 protocol ManagedSourceListItemDelegate: NSObjectProtocol {
     func listItem(_ parentItem: SourceListItem, didAddChild item: SourceListItem, atIndexPath indexPath: IndexPath)
     func listItem(_ parentItem: SourceListItem, didRemoveChild item: SourceListItem, atIndexPath indexPath: IndexPath)
+    func listItem(_ parentItem: SourceListItem, didUpdateChild item: SourceListItem, atIndexPath indexPath: IndexPath, to object: Any)
     func listItemStartUpdate(item: SourceListItem)
     func listItemEndUpdate(item: SourceListItem)
 }
@@ -80,7 +81,6 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
             obj in
             let item = self.childrenItemProvier(obj)
             item.associatedObject = obj
-            item.bind(NSBindingName(rawValue: "title"), to: obj, withKeyPath: "name", options: nil)
             return item
         }
     }
@@ -93,11 +93,13 @@ class ManagedSourceListItem<Item>: SourceListItem, NSFetchedResultsControllerDel
             let item = self.childrenItemProvier(obj)
             self.children.insert(item, at: newIndexPath!.item)
             item.associatedObject = obj
-            item.bind(NSBindingName(rawValue: "title"), to: obj, withKeyPath: "name", options: nil)
             self.delegate?.listItem(self, didAddChild: item, atIndexPath: newIndexPath!)
         case .delete:
             let item = self.children.remove(at: indexPath!.item)
             self.delegate?.listItem(self, didRemoveChild: item, atIndexPath: indexPath!)
+        case .update:
+            let item = self.children[indexPath!.item]
+            self.delegate?.listItem(self, didUpdateChild: item, atIndexPath: indexPath!, to: anObject)
         default:
             ()
         }
