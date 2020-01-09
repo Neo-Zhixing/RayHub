@@ -11,6 +11,17 @@ import AppKit
 extension NSPasteboard.PasteboardType {
     static let sourceListItem: NSPasteboard.PasteboardType = NSPasteboard.PasteboardType(rawValue: "xin.neoto.SourceListItem")
 }
+
+extension NSUserInterfaceItemIdentifier {
+    static let VmessMenuItem = NSUserInterfaceItemIdentifier("vmess")
+    static let ShadowsocksMenuItem = NSUserInterfaceItemIdentifier("shadowsocks")
+    static let RouteMenuItem = NSUserInterfaceItemIdentifier("route")
+    
+    static let SourceListHeaderCell = NSUserInterfaceItemIdentifier("HeaderCell")
+    static let SourceListTextCell = NSUserInterfaceItemIdentifier("TextCell")
+    static let SourceListTextImageCell = NSUserInterfaceItemIdentifier("TextImageCell")
+}
+
 class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, ManagedSourceListItemDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
@@ -35,11 +46,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             imageNamed: "GlobeTemplate",
             segue: "ConnectionSegue"
         ),
-        SourceListItem(
-            title: "Routing",
-            imageNamed: "RouteTemplate",
-            segue: "RoutingSegue"
-        ),
+        self.routesItem,
         SourceListItem(header: "Servers", [
             self.vmessServersItem,
             self.shadowsocksServersItem
@@ -81,12 +88,33 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         return item
     }()
     
+    lazy var routesItem: ManagedSourceListItem<Route> = {
+        let fetchRequest: NSFetchRequest<Route> = Route.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "domains", ascending: false)
+        ]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: NSApplication.shared.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "Routes")
+        
+        let item = ManagedSourceListItem<Route>(
+            title: "Routes",
+            imageNamed: "RouteTemplate",
+            segue: "RoutingSegue",
+            controller: fetchedResultsController) {
+            route in
+            SourceListItem(title: route.name ?? "Unnamed Route", imageNamed: nil, segue: "RouteSegue", header: false)
+        }
+        fetchedResultsController.delegate = item
+        item.delegate = self
+        return item
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.outlineView.registerForDraggedTypes([.sourceListItem])
         do {
             try self.vmessServersItem.prepare()
             try self.shadowsocksServersItem.prepare()
+            try self.routesItem.prepare()
         } catch let err {
             NSAlert(error: err).runModal()
         }
@@ -128,11 +156,11 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         let aItem = item as! SourceListItem
         let cellIdentifier: NSUserInterfaceItemIdentifier
         if aItem.isHeader {
-            cellIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
+            cellIdentifier = .SourceListHeaderCell
         } else if aItem.image == nil {
-            cellIdentifier = NSUserInterfaceItemIdentifier("TextCell")
+            cellIdentifier = .SourceListTextCell
         } else {
-            cellIdentifier = NSUserInterfaceItemIdentifier("TextImageCell")
+            cellIdentifier = .SourceListTextImageCell
         }
         let cell: NSTableCellView = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
         cell.textField?.stringValue = aItem.title
@@ -193,15 +221,20 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
     @IBAction func showAddMenu(sender: NSButton) {
         self.addMenu.popUp(positioning: nil, at: NSPoint(), in: sender)
     }
-    @IBAction func addServer(sender: NSMenuItem) {
+    @IBAction func addItem(sender: NSMenuItem) {
         let context = NSApplication.shared.persistentContainer.viewContext
         guard let id = sender.identifier else {
             return
         }
-        if id.rawValue == "vmess" {
+        switch id {
+        case .VmessMenuItem:
             _ = VmessServer(context: context)
-        } else if id.rawValue == "shadowsocks" {
+        case .ShadowsocksMenuItem:
             _ = ShadowsocksServer(context: context)
+        case .RouteMenuItem:
+            _ = Route(context: context)
+        default:
+            ()
         }
     }
     @IBAction func removeItem(sender: NSButton)  {
@@ -225,13 +258,17 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
         self.outlineView.removeItems(at: indexSet, inParent: parentItem, withAnimation: .slideRight)
     }
     func listItem(_ parentItem: SourceListItem, didUpdateChild item: SourceListItem, atIndexPath indexPath: IndexPath, to object: Any) {
-        if let server = object as? VmessServer {
-            item.title = server.name ?? "Untitled"
-            let row = self.outlineView.row(forItem: item)
-            let rowView = self.outlineView.rowView(atRow: row, makeIfNecessary: false)
-            let colView = rowView?.view(atColumn: 0) as? NSTableCellView
-            colView?.textField?.stringValue = item.title
+        var title: String?
+        if let server = object as? Server {
+            title = server.name
+        } else if let route = object as? Route {
+            title = route.name
         }
+        let row = self.outlineView.row(forItem: item)
+        let rowView = self.outlineView.rowView(atRow: row, makeIfNecessary: false)
+        let colView = rowView?.view(atColumn: 0) as? NSTableCellView
+        item.title = title ?? ""
+        colView?.textField?.stringValue = item.title
     }
     func listItemStartUpdate(item: SourceListItem) {
         self.outlineView.beginUpdates()
