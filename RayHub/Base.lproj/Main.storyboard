@@ -1287,11 +1287,20 @@
                         <segue destination="2Mz-Hf-qQA" kind="custom" identifier="ConnectionSegue" customClass="ContentViewReplaceSegue" customModule="RayHub" customModuleProvider="target" id="k3B-Bp-5dM"/>
                         <segue destination="PKt-Uj-GXp" kind="custom" identifier="VmessServerSegue" customClass="ContentViewReplaceSegue" customModule="RayHub" customModuleProvider="target" id="wVW-S5-S7k"/>
                         <segue destination="nhY-v7-dbr" kind="custom" identifier="ShadowsocksServerSegue" customClass="ContentViewReplaceSegue" customModule="RayHub" customModuleProvider="target" id="gSt-z8-kBS"/>
+                        <segue destination="B7e-H0-Wi3" kind="custom" identifier="RoutingSegue" customClass="ContentViewReplaceSegue" customModule="RayHub" customModuleProvider="target" id="8pg-uH-eSJ"/>
                     </connections>
                 </viewController>
                 <customObject id="ktq-2e-lIh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368" y="1257"/>
+        </scene>
+        <!--Routing View Controller-->
+        <scene sceneID="t77-B5-BUf">
+            <objects>
+                <hostingController title="Routing View Controller" id="B7e-H0-Wi3" customClass="RoutingViewController" customModule="RayHub" customModuleProvider="target" sceneMemberID="viewController"/>
+                <customObject id="ntc-kv-ZmB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901" y="1257"/>
         </scene>
         <!--Vmess View Controller-->
         <scene sceneID="JQn-qy-cG3">

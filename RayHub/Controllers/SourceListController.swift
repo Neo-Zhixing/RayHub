@@ -35,6 +35,11 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             imageNamed: "GlobeTemplate",
             segue: "ConnectionSegue"
         ),
+        SourceListItem(
+            title: "Routing",
+            imageNamed: "RouteTemplate",
+            segue: "RoutingSegue"
+        ),
         SourceListItem(header: "Servers", [
             self.vmessServersItem,
             self.shadowsocksServersItem
