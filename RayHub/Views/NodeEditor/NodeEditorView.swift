@@ -12,12 +12,9 @@ struct NodeEditorView: View {
     @State var a = "default"
     var body: some View {
         ScrollView([.horizontal, .vertical], showsIndicators: true) {
-            Node(
-                inputs: [InboundReceiverSocket],
-                outputs: [InboundSocket]
-                ) {
-                TextField("Good", text: self.$a)
-            }
+            BalancerNode()
+            RouterNode()
+            
         }
         .background(Color(NSColor.underPageBackgroundColor))
         .frame(maxWidth: .infinity, maxHeight: .infinity)

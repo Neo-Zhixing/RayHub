@@ -20,6 +20,7 @@ struct Node<Content>: View where Content: View {
     let paddingSize: CGFloat = 20
     let circleSize: CGFloat = 10
     let content: () -> Content
+    @State var title: String = "Node"
     var inputSockets: [InputSocket]
     var outputSockets: [OutputSocket]
     
@@ -66,9 +67,10 @@ struct Node<Content>: View where Content: View {
     
     var body: some View {
         VStack {
-            Text("Source")
+            TextField("Name", text: $title)
                 .font(Font.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .textFieldStyle(PlainTextFieldStyle())
             Divider()
             ForEach(self.inputSockets) {
                 socket in
@@ -127,6 +129,12 @@ struct Node<Content>: View where Content: View {
                 self.position.y += drag.translation.height
             })
     }
+    
+    
+    func title(_ title: String) -> some View {
+        self.title = title
+        return self
+    }
 }
 
 
@@ -179,14 +187,3 @@ fileprivate struct NodeSocket: View {
     }
 }
 
-struct Node_Preview: PreviewProvider {
-    static var previews: some View {
-        Node(
-            inputs: [InboundReceiverSocket],
-            outputs: [InboundSocket]
-            ) {
-            Text("Good")
-        }
-        .frame(width: 300)
-    }
-}

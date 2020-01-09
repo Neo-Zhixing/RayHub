@@ -11,9 +11,11 @@ import Foundation
 class Socket {
     var name: String
     var identifier: String
-    fileprivate init(name: String, identifier: String) {
+    var multiple: Bool
+    fileprivate init(name: String, identifier: String, multiple: Bool = false) {
         self.name = name
         self.identifier = identifier
+        self.multiple = multiple
     }
 }
 
@@ -28,16 +30,16 @@ extension Socket: Hashable {
 }
 
 class InputSocket: Socket {
-    override init(name: String, identifier: String) {
-        super.init(name: name, identifier: identifier)
+    override init(name: String, identifier: String, multiple: Bool = false) {
+        super.init(name: name, identifier: identifier, multiple: multiple)
     }
 }
 
 class OutputSocket: Socket {
     var connections: Set<InputSocket>
-    override init(name: String, identifier: String) {
+    override init(name: String, identifier: String, multiple: Bool = false) {
         self.connections = Set<InputSocket>()
-        super.init(name: name, identifier: identifier)
+        super.init(name: name, identifier: identifier, multiple: multiple)
     }
     
     func connect(input: InputSocket) -> OutputSocket {
