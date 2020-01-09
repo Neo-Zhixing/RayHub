@@ -9,8 +9,8 @@
 import AppKit
 import SwiftUI
 
-class RoutingViewController: NSHostingController<RoutingView> {
+class RoutingViewController: NSHostingController<NodeEditorView> {
     required init?(coder aDecoder: NSCoder) {
-        super.init(rootView: RoutingView())
+        super.init(rootView: NodeEditorView())
     }
 }

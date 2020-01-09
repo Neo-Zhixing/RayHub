@@ -23,6 +23,41 @@ struct Node<Content>: View where Content: View {
     var inputSockets: [InputSocket]
     var outputSockets: [OutputSocket]
     
+    @State var position = CGPoint()
+    @GestureState var dragState = DragState.inactive
+    enum DragState {
+        case inactive
+        case pressing
+        case dragging(translation: CGSize)
+        var translation: CGSize {
+            get {
+                if case .dragging(let translation) = self {
+                    return translation
+                } else {
+                    return .zero
+                }
+            }
+        }
+        var isDragging: Bool {
+            get {
+                if case .dragging = self {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        var isInactive: Bool {
+            get {
+                if case .inactive = self {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }
+    
     init(inputs: [InputSocket], outputs: [OutputSocket], @ViewBuilder content: @escaping () -> Content) {
         self.inputSockets = inputs
         self.outputSockets = outputs
@@ -66,7 +101,31 @@ struct Node<Content>: View where Content: View {
         .background(Color(NSColor.controlBackgroundColor))
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 10)
-        .stroke(Color(NSColor.controlColor), lineWidth: 1))
+            .stroke(self.dragState.isInactive ? Color(NSColor.controlColor) : Color(NSColor.selectedControlColor),
+                lineWidth: self.dragState.isDragging ? 3 : 1))
+        .position(
+            x: self.position.x + self.dragState.translation.width,
+            y: self.position.y + self.dragState.translation.height)
+            
+            .gesture(LongPressGesture(minimumDuration: 0.3)
+            .sequenced(before: DragGesture())
+            .updating($dragState) {
+                value, state, transaction in
+                switch value {
+                case .first(true):
+                    state = .pressing
+                case .second(true, let drag):
+                    state = .dragging(translation: drag?.translation ?? .zero)
+                default:
+                    state = .inactive
+                }
+            }
+            .onEnded {
+                value in
+                guard case .second(true, let drag?) = value else { return }
+                self.position.x += drag.translation.width
+                self.position.y += drag.translation.height
+            })
     }
 }
 
@@ -76,7 +135,7 @@ fileprivate struct NodeSocket: View {
         case left
         case right
     }
-    let size: CGSize = CGSize(width: 10, height: 8)
+    let size: CGSize = CGSize(width: 12, height: 10)
     let direction: Direction
     var body: some View {
         let pathDrawer: (inout Path) -> Void
@@ -117,5 +176,17 @@ fileprivate struct NodeSocket: View {
         path.addLine(to: CGPoint(x: r, y: h))
         path.addLine(to: CGPoint(x: w, y: h))
         path.closeSubpath()
+    }
+}
+
+struct Node_Preview: PreviewProvider {
+    static var previews: some View {
+        Node(
+            inputs: [InboundReceiverSocket],
+            outputs: [InboundSocket]
+            ) {
+            Text("Good")
+        }
+        .frame(width: 300)
     }
 }

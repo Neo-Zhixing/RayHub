@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct RoutingView: View {
+struct NodeEditorView: View {
     @State var a = "default"
     var body: some View {
         ScrollView([.horizontal, .vertical], showsIndicators: true) {
