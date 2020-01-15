@@ -34,6 +34,7 @@
 		B5C6CCC623BFC396000A6E53 /* RayHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */; };
 		B5DFF05E23BFD45900396DE0 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DFF05D23BFD45900396DE0 /* StatusBar.swift */; };
 		B5FB367E23CFCAED007005C5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB367D23CFCAED007005C5 /* Route.swift */; };
+		B5FB368023CFDC4A007005C5 /* NSClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB367F23CFDC4A007005C5 /* NSClipView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		B5C6CCC723BFC396000A6E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5DFF05D23BFD45900396DE0 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		B5FB367D23CFCAED007005C5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B5FB367F23CFDC4A007005C5 /* NSClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSClipView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				B57ACDD623C3654400B3B281 /* UUIDFormatter.swift */,
+				B5FB367F23CFDC4A007005C5 /* NSClipView.swift */,
 				B5A3E1B023C84864008B1585 /* PortRangeFormatter.swift */,
 			);
 			path = Utils;
@@ -380,6 +383,7 @@
 				B57ACDDA23C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift in Sources */,
 				B5AE632423C7A7FF00D82F45 /* BalancerNode.swift in Sources */,
 				B57ACDE523C4DF7D00B3B281 /* NodeEditorView.swift in Sources */,
+				B5FB368023CFDC4A007005C5 /* NSClipView.swift in Sources */,
 				B52D1FA223C2A329005DDE09 /* Server+CoreDataClass.swift in Sources */,
 				B52D1FA623C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift in Sources */,
 				B5FB367E23CFCAED007005C5 /* Route.swift in Sources */,

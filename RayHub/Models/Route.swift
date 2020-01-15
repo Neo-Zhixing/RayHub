@@ -178,7 +178,7 @@ extension Route {
     @NSManaged public var name: String
     @NSManaged public var network: Int16
     @NSManaged public var ports: String
-    @NSManaged public var protocols: String
+    @NSManaged public var protocols: Int16
     @NSManaged public var sources: String
 
 }
