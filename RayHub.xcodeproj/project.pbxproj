@@ -15,14 +15,13 @@
 		B52D1FA223C2A329005DDE09 /* Server+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */; };
 		B52D1FA623C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */; };
 		B55A80C223C7B777005D39A2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55A80C123C7B777005D39A2 /* RouteViewController.swift */; };
-		B55A80C423C7C70A005D39A2 /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55A80C323C7C70A005D39A2 /* Route+CoreDataProperties.swift */; };
 		B57ACDD723C3654400B3B281 /* UUIDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDD623C3654400B3B281 /* UUIDFormatter.swift */; };
 		B57ACDDA23C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDD823C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift */; };
 		B57ACDE223C4DF2E00B3B281 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDE123C4DF2E00B3B281 /* RoutingViewController.swift */; };
 		B57ACDE523C4DF7D00B3B281 /* NodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDE423C4DF7D00B3B281 /* NodeEditorView.swift */; };
 		B57ACDE723C4F01000B3B281 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDE623C4F01000B3B281 /* Node.swift */; };
 		B57ACDE923C6F26300B3B281 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57ACDE823C6F26300B3B281 /* Socket.swift */; };
-		B580556923C7B064000DF9A9 /* Route+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580556823C7B064000DF9A9 /* Route+CoreDataClass.swift */; };
+		B5A3E1B123C84864008B1585 /* PortRangeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A3E1B023C84864008B1585 /* PortRangeFormatter.swift */; };
 		B5AE630A23C75EA400D82F45 /* RouterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AE630923C75EA400D82F45 /* RouterNode.swift */; };
 		B5AE631523C7795900D82F45 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AE631423C7795900D82F45 /* Presets.swift */; };
 		B5AE631F23C794D700D82F45 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AE631E23C794D700D82F45 /* MultilineTextField.swift */; };
@@ -34,6 +33,7 @@
 		B5C6CCBB23BFC396000A6E53 /* RayHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCBA23BFC396000A6E53 /* RayHubTests.swift */; };
 		B5C6CCC623BFC396000A6E53 /* RayHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */; };
 		B5DFF05E23BFD45900396DE0 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DFF05D23BFD45900396DE0 /* StatusBar.swift */; };
+		B5FB367E23CFCAED007005C5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB367D23CFCAED007005C5 /* Route.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,14 +62,13 @@
 		B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VmessServer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B55A80C123C7B777005D39A2 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
-		B55A80C323C7C70A005D39A2 /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B57ACDD623C3654400B3B281 /* UUIDFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDFormatter.swift; sourceTree = "<group>"; };
 		B57ACDD823C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShadowsocksServer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B57ACDE123C4DF2E00B3B281 /* RoutingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingViewController.swift; sourceTree = "<group>"; };
 		B57ACDE423C4DF7D00B3B281 /* NodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorView.swift; sourceTree = "<group>"; };
 		B57ACDE623C4F01000B3B281 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		B57ACDE823C6F26300B3B281 /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
-		B580556823C7B064000DF9A9 /* Route+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5A3E1B023C84864008B1585 /* PortRangeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortRangeFormatter.swift; sourceTree = "<group>"; };
 		B5A6531E23C0E95900627B5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5AE630923C75EA400D82F45 /* RouterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNode.swift; sourceTree = "<group>"; };
 		B5AE631423C7795900D82F45 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		B5C6CCC523BFC396000A6E53 /* RayHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayHubUITests.swift; sourceTree = "<group>"; };
 		B5C6CCC723BFC396000A6E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5DFF05D23BFD45900396DE0 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		B5FB367D23CFCAED007005C5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B57ACDD623C3654400B3B281 /* UUIDFormatter.swift */,
+				B5A3E1B023C84864008B1585 /* PortRangeFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -161,8 +162,7 @@
 				B52D1FA023C2A329005DDE09 /* Server+CoreDataClass.swift */,
 				B57ACDD823C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift */,
 				B52D1FA423C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift */,
-				B55A80C323C7C70A005D39A2 /* Route+CoreDataProperties.swift */,
-				B580556823C7B064000DF9A9 /* Route+CoreDataClass.swift */,
+				B5FB367D23CFCAED007005C5 /* Route.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -376,13 +376,13 @@
 				B57ACDE923C6F26300B3B281 /* Socket.swift in Sources */,
 				B5AE630A23C75EA400D82F45 /* RouterNode.swift in Sources */,
 				B55A80C223C7B777005D39A2 /* RouteViewController.swift in Sources */,
+				B5A3E1B123C84864008B1585 /* PortRangeFormatter.swift in Sources */,
 				B57ACDDA23C3734A00B3B281 /* ShadowsocksServer+CoreDataClass.swift in Sources */,
-				B580556923C7B064000DF9A9 /* Route+CoreDataClass.swift in Sources */,
 				B5AE632423C7A7FF00D82F45 /* BalancerNode.swift in Sources */,
 				B57ACDE523C4DF7D00B3B281 /* NodeEditorView.swift in Sources */,
-				B55A80C423C7C70A005D39A2 /* Route+CoreDataProperties.swift in Sources */,
 				B52D1FA223C2A329005DDE09 /* Server+CoreDataClass.swift in Sources */,
 				B52D1FA623C2A3FA005DDE09 /* VmessServer+CoreDataClass.swift in Sources */,
+				B5FB367E23CFCAED007005C5 /* Route.swift in Sources */,
 				B57ACDD723C3654400B3B281 /* UUIDFormatter.swift in Sources */,
 				B57ACDE223C4DF2E00B3B281 /* RoutingViewController.swift in Sources */,
 				B5AE631F23C794D700D82F45 /* MultilineTextField.swift in Sources */,
