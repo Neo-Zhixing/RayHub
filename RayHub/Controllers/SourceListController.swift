@@ -101,7 +101,7 @@ class SourceListController: NSViewController, NSOutlineViewDataSource, NSOutline
             segue: "RoutingSegue",
             controller: fetchedResultsController) {
             route in
-            SourceListItem(title: route.name ?? "Unnamed Route", imageNamed: nil, segue: "RouteSegue", header: false)
+            SourceListItem(title: route.name, imageNamed: nil, segue: "RouteSegue", header: false)
         }
         fetchedResultsController.delegate = item
         item.delegate = self
