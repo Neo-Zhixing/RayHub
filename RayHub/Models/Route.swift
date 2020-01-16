@@ -184,6 +184,11 @@ extension Route {
 }
 
 extension Route {
+    func domainObjectsUpdate(_ domainObjects: [RouteDomain]) {
+        self.domains = domainObjects.map {
+            domain in domain.type.prefix + domain.value
+        }.joined(separator: "\n")
+    }
     @objc public var domainObjects: [RouteDomain] {
         get {
             let domainStrs: [Substring] = self.domains.split(separator: "\n")
@@ -209,12 +214,15 @@ extension Route {
             return domains
         }
         set (domainObjects) {
-            self.domains = domainObjects.map {
-                domain in domain.type.prefix + domain.value
-            }.joined(separator: "\n")
+            self.domainObjectsUpdate(domainObjects)
         }
     }
     
+    func ipObjectsUpdate(_ ipObjects: [RouteIP]) {
+        self.ips = ipObjects.map {
+            ip in ip.type.prefix + ip.value
+        }.joined(separator: "\n")
+    }
     @objc public var ipObjects: [RouteIP] {
         get {
             let ipStrs: [Substring] = self.ips.split(separator: "\n")
@@ -233,12 +241,13 @@ extension Route {
             }
         }
         set (ipObjects) {
-            self.ips = ipObjects.map {
-                ip in ip.type.prefix + ip.value
-            }.joined(separator: "\n")
+            self.ipObjectsUpdate(ipObjects)
         }
     }
     
+    func portObjectsUpdate(_ portObjects: [PortRange]) {
+        self.ports = portObjects.map{ port in port.string }.joined(separator: ",")
+    }
     @objc public var portObjects: [PortRange] {
         get {
             let portStrs: [Substring] = self.ports.split(separator: ",")
@@ -246,7 +255,7 @@ extension Route {
                 .compactMap{ port -> PortRange? in PortRange(port)}
         }
         set(portObjects) {
-            self.ports = portObjects.map{ port in port.string }.joined(separator: ",")
+            self.portObjectsUpdate(portObjects)
         }
     }
 }

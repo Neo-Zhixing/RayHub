@@ -1421,6 +1421,9 @@
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="JW7-kK-j1A" id="Ckk-mW-xHo"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </clipView>
@@ -1514,6 +1517,9 @@
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="JW7-kK-j1A" id="T0c-V5-86N"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </clipView>
@@ -1582,6 +1588,9 @@
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="JW7-kK-j1A" id="9tP-ae-HVK"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </clipView>
@@ -1764,7 +1773,10 @@
                         </scroller>
                     </scrollView>
                     <connections>
+                        <outlet property="domainArrayController" destination="vz7-rU-fQf" id="osp-Nl-K5b"/>
+                        <outlet property="ipArrayController" destination="xwQ-bM-lBJ" id="rPF-Fd-xAu"/>
                         <outlet property="networkSegmentedControl" destination="IIJ-IE-28b" id="iuZ-r5-pjd"/>
+                        <outlet property="portArrayController" destination="9bt-we-lqL" id="4F7-ca-2qA"/>
                         <outlet property="protocolSegmentedControl" destination="SQR-LF-KFY" id="Rde-4p-hEy"/>
                     </connections>
                 </viewController>
@@ -1793,7 +1805,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="918.5" y="1755"/>
+            <point key="canvasLocation" x="1156" y="1769"/>
         </scene>
         <!--Vmess View Controller-->
         <scene sceneID="JQn-qy-cG3">
